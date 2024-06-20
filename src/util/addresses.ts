@@ -40,6 +40,8 @@ export const V3_CORE_FACTORY_ADDRESSES: AddressMap = {
   [ChainId.BASE]: CHAIN_TO_ADDRESSES_MAP[ChainId.BASE].v3CoreFactoryAddress,
   [ChainId.BLAST]: CHAIN_TO_ADDRESSES_MAP[ChainId.BLAST].v3CoreFactoryAddress,
   // TODO: Gnosis + Moonbeam contracts to be deployed
+  [ChainId.BASE_SEPOLIA]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.BASE_SEPOLIA].v3MigratorAddress,
 };
 
 export const QUOTER_V2_ADDRESSES: AddressMap = {
@@ -63,6 +65,8 @@ export const QUOTER_V2_ADDRESSES: AddressMap = {
   [ChainId.BASE]: CHAIN_TO_ADDRESSES_MAP[ChainId.BASE].quoterAddress,
   [ChainId.BLAST]: CHAIN_TO_ADDRESSES_MAP[ChainId.BLAST].quoterAddress,
   // TODO: Gnosis + Moonbeam contracts to be deployed
+  [ChainId.BASE_SEPOLIA]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.BASE_SEPOLIA].quoterAddress,
 };
 
 export const NEW_QUOTER_V2_ADDRESSES: AddressMap = {
@@ -110,8 +114,11 @@ export const UNISWAP_MULTICALL_ADDRESSES: AddressMap = {
   // TODO: Gnosis + Moonbeam contracts to be deployed
 };
 
-export const SWAP_ROUTER_02_ADDRESSES= (chainId: number): string => {
-  return SWAP_ROUTER_02_ADDRESSES_HELPER(chainId) ?? '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45';
+export const SWAP_ROUTER_02_ADDRESSES = (chainId: number): string => {
+  return (
+    SWAP_ROUTER_02_ADDRESSES_HELPER(chainId) ??
+    '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45'
+  );
 };
 
 export const OVM_GASPRICE_ADDRESS =
@@ -241,7 +248,14 @@ export const WETH9: {
     18,
     'WETH',
     'Wrapped Ether'
-  )
+  ),
+  [ChainId.BASE_SEPOLIA]: new Token(
+    ChainId.BASE_SEPOLIA,
+    '0x6267947C818ff3900F620FC97d590702afB69147',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
 };
 
 export const BEACON_CHAIN_DEPOSIT_ADDRESS =

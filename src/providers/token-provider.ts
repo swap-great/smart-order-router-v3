@@ -598,6 +598,14 @@ export const USDC_ETHEREUM_GNOSIS = new Token(
   'USDC from Ethereum on Gnosis'
 );
 
+export const USDC_BASE_SEPOLIA = new Token(
+  ChainId.BASE_SEPOLIA,
+  '0x48F69d8bf72B2C725E3b1d380178a70BD5A42785',
+  6,
+  'USDC',
+  'USD//C'
+);
+
 export const WXDAI_GNOSIS = new Token(
   ChainId.GNOSIS,
   '0xe91d153e0b41518a2ce8dd3d7944fa863463a97d',
@@ -654,7 +662,7 @@ export const USDB_BLAST = new Token(
   18,
   'USDB',
   'USD Blast'
-)
+);
 
 export class TokenProvider implements ITokenProvider {
   constructor(
@@ -923,6 +931,8 @@ export const USDC_ON = (chainId: ChainId): Token => {
       return USDC_BASE;
     case ChainId.BASE_GOERLI:
       return USDC_BASE_GOERLI;
+    case ChainId.BASE_SEPOLIA:
+      return USDC_BASE_SEPOLIA;
     default:
       throw new Error(`Chain id: ${chainId} not supported`);
   }

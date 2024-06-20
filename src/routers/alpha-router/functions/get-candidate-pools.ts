@@ -11,7 +11,7 @@ import {
   USDC_OPTIMISM_SEPOLIA,
   USDT_OPTIMISM_SEPOLIA,
   V2SubgraphPool,
-  WBTC_OPTIMISM_SEPOLIA
+  WBTC_OPTIMISM_SEPOLIA,
 } from '../../../providers';
 import {
   CELO,
@@ -36,6 +36,7 @@ import {
   USDC_ARBITRUM_GOERLI,
   USDC_AVAX,
   USDC_BASE,
+  USDC_BASE_SEPOLIA,
   USDC_BNB,
   USDC_ETHEREUM_GNOSIS,
   USDC_MAINNET,
@@ -187,6 +188,11 @@ const baseTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.AVALANCHE]: [DAI_AVAX, USDC_AVAX],
   [ChainId.BASE]: [USDC_BASE],
   [ChainId.BLAST]: [WRAPPED_NATIVE_CURRENCY[ChainId.BLAST]!, USDB_BLAST],
+  // change
+  [ChainId.BASE_SEPOLIA]: [
+    WRAPPED_NATIVE_CURRENCY[ChainId.BASE_SEPOLIA],
+    USDC_BASE_SEPOLIA,
+  ],
 };
 
 class SubcategorySelectionPools<SubgraphPool> {

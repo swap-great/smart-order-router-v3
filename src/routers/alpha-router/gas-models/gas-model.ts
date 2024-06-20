@@ -20,12 +20,14 @@ import {
   DAI_OPTIMISM_GOERLI,
   DAI_OPTIMISM_SEPOLIA,
   DAI_POLYGON_MUMBAI,
-  DAI_SEPOLIA, USDB_BLAST,
+  DAI_SEPOLIA,
+  USDB_BLAST,
   USDC_ARBITRUM,
   USDC_ARBITRUM_GOERLI,
   USDC_ARBITRUM_SEPOLIA,
   USDC_AVAX,
   USDC_BASE,
+  USDC_BASE_SEPOLIA,
   USDC_BNB,
   USDC_BRIDGED_AVAX,
   USDC_CELO,
@@ -52,7 +54,7 @@ import {
   USDT_OPTIMISM,
   USDT_OPTIMISM_GOERLI,
   USDT_OPTIMISM_SEPOLIA,
-  WBTC_GOERLI
+  WBTC_GOERLI,
 } from '../../../providers/token-provider';
 import { IV2PoolProvider } from '../../../providers/v2/pool-provider';
 import {
@@ -114,6 +116,7 @@ export const usdGasTokensByChain: { [chainId in ChainId]?: Token[] } = {
   ],
   [ChainId.BASE]: [USDC_BASE, USDC_NATIVE_BASE],
   [ChainId.BLAST]: [USDB_BLAST],
+  [ChainId.BASE_SEPOLIA]: [USDC_BASE_SEPOLIA],
 };
 
 export type L1ToL2GasCosts = {

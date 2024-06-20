@@ -25,6 +25,7 @@ export const SUPPORTED_CHAINS: ChainId[] = [
   ChainId.BASE,
   ChainId.BLAST,
   // Gnosis and Moonbeam don't yet have contracts deployed yet
+  ChainId.BASE_SEPOLIA,
 ];
 
 export const V2_SUPPORTED = [
@@ -36,6 +37,8 @@ export const V2_SUPPORTED = [
   ChainId.BASE,
   ChainId.BNB,
   ChainId.AVALANCHE,
+  //
+  ChainId.BASE_SEPOLIA,
 ];
 
 export const HAS_L1_FEE = [
@@ -48,6 +51,8 @@ export const HAS_L1_FEE = [
   ChainId.BASE,
   ChainId.BASE_GOERLI,
   ChainId.BLAST,
+  //
+  ChainId.BASE_SEPOLIA,
 ];
 
 export const NETWORKS_WITH_SAME_UNISWAP_ADDRESSES = [
@@ -101,6 +106,8 @@ export const ID_TO_CHAIN_ID = (id: number): ChainId => {
       return ChainId.BASE_GOERLI;
     case 81457:
       return ChainId.BLAST;
+    case 84532:
+      return ChainId.BASE_SEPOLIA;
     default:
       throw new Error(`Unknown chain id: ${id}`);
   }
@@ -127,6 +134,7 @@ export enum ChainName {
   BASE = 'base-mainnet',
   BASE_GOERLI = 'base-goerli',
   BLAST = 'blast-mainnet',
+  BASE_SEPOLIA = 'base-sepolia',
 }
 
 export enum NativeCurrencyName {
@@ -233,6 +241,7 @@ export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
   [ChainId.AVALANCHE]: NativeCurrencyName.AVALANCHE,
   [ChainId.BASE]: NativeCurrencyName.ETHER,
   [ChainId.BLAST]: NativeCurrencyName.ETHER,
+  [ChainId.BASE_SEPOLIA]: NativeCurrencyName.ETHER,
 };
 
 export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
@@ -277,6 +286,8 @@ export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
       return ChainName.BASE_GOERLI;
     case 81457:
       return ChainName.BLAST;
+    case 84532:
+      return ChainName.BASE_SEPOLIA;
     default:
       throw new Error(`Unknown chain id: ${id}`);
   }
@@ -322,6 +333,8 @@ export const ID_TO_PROVIDER = (id: ChainId): string => {
       return process.env.JSON_RPC_PROVIDER_BASE!;
     case ChainId.BLAST:
       return process.env.JSON_RPC_PROVIDER_BLAST!;
+    case ChainId.BASE_SEPOLIA:
+      return process.env.JSON_RPC_PROVIDER_BASE_SEPOLIA!;
     default:
       throw new Error(`Chain id: ${id} not supported`);
   }
@@ -487,6 +500,13 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
   [ChainId.BLAST]: new Token(
     ChainId.BLAST,
     '0x4300000000000000000000000000000000000004',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.BASE_SEPOLIA]: new Token(
+    ChainId.BASE_SEPOLIA,
+    '0x6267947C818ff3900F620FC97d590702afB69147',
     18,
     'WETH',
     'Wrapped Ether'
