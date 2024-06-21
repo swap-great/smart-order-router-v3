@@ -115,8 +115,6 @@ export const UNISWAP_MULTICALL_ADDRESSES: AddressMap = {
   [ChainId.BASE_SEPOLIA]:
     CHAIN_TO_ADDRESSES_MAP[ChainId.BASE_SEPOLIA].multicallAddress,
   // TODO: Gnosis + Moonbeam contracts to be deployed
-  [ChainId.BASE_SEPOLIA]:
-    CHAIN_TO_ADDRESSES_MAP[ChainId.BASE_SEPOLIA].multicallAddress,
 };
 
 export const SWAP_ROUTER_02_ADDRESSES = (chainId: number): string => {
