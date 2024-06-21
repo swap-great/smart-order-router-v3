@@ -166,6 +166,10 @@ export const CACHE_SEED_TOKENS: {
     USDB: USDB_BLAST,
     WETH: WRAPPED_NATIVE_CURRENCY[ChainId.BLAST],
   },
+  [ChainId.BASE_SEPOLIA]: {
+    USDC: USDC_BASE_SEPOLIA,
+    WETH: WRAPPED_NATIVE_CURRENCY[ChainId.BASE_SEPOLIA],
+  },
   // Currently we do not have providers for Moonbeam mainnet or Gnosis testnet
   [ChainId.BASE_SEPOLIA]: {
     USDC: USDC_BASE_SEPOLIA,
