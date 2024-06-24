@@ -1,4 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber';
+import { BaseProvider } from '@ethersproject/providers';
 import { ChainId, Token } from '@uniswap/sdk-core';
 import { Pair } from '@uniswap/v2-sdk';
 import _ from 'lodash';
@@ -20,7 +21,6 @@ import {
   IV2GasModelFactory,
   usdGasTokensByChain,
 } from '../gas-model';
-import { BaseProvider } from '@ethersproject/providers';
 
 // Constant cost for doing any swap regardless of pools.
 export const BASE_SWAP_COST = BigNumber.from(135000); // 115000, bumped up by 20_000 @eric 7/8/2022
@@ -286,9 +286,9 @@ export class V2HeuristicGasModelFactory extends IV2GasModelFactory {
     if (pools.length == 0) {
       log.error(
         { pools },
-        `Could not find a USD/WETH pool for computing gas costs.`
+        `Could not find a USD/WETH pool for computing gas costs.1`
       );
-      throw new Error(`Can't find USD/WETH pool for computing gas costs.`);
+      throw new Error(`Can't find USD/WETH pool for computing gas costs.2`);
     }
 
     const maxPool = _.maxBy(pools, (pool) => {

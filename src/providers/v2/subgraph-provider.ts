@@ -40,7 +40,7 @@ const SUBGRAPH_URL_BY_CHAIN: { [chainId in ChainId]?: string } = {
   [ChainId.MAINNET]:
     'https://api.thegraph.com/subgraphs/name/ianlapham/uniswap-v2-dev',
   [ChainId.BASE_SEPOLIA]:
-    'https://api.studio.thegraph.com/query/64677/0xswap-v3-basetest/version/latest',
+    'https://api.studio.thegraph.com/query/64677/0xswap-basetest/version/latest',
 };
 
 const threshold = 0.025;

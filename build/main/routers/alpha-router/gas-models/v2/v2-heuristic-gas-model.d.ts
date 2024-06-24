@@ -1,7 +1,7 @@
 import { BigNumber } from '@ethersproject/bignumber';
+import { BaseProvider } from '@ethersproject/providers';
 import { V2RouteWithValidQuote } from '../../entities/route-with-valid-quote';
 import { BuildV2GasModelFactoryType, IGasModel, IV2GasModelFactory } from '../gas-model';
-import { BaseProvider } from '@ethersproject/providers';
 export declare const BASE_SWAP_COST: BigNumber;
 export declare const COST_PER_EXTRA_HOP: BigNumber;
 /**

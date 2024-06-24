@@ -1,6 +1,9 @@
+import { estimateL1Gas, estimateL1GasCost } from '@eth-optimism/sdk';
 import { BigNumber } from '@ethersproject/bignumber';
+import { BaseProvider, TransactionRequest } from '@ethersproject/providers';
 import { Protocol } from '@uniswap/router-sdk';
 import { ChainId, Percent, Token, TradeType } from '@uniswap/sdk-core';
+import { Pair } from '@uniswap/v2-sdk';
 import { FeeAmount, Pool } from '@uniswap/v3-sdk';
 import brotli from 'brotli';
 import JSBI from 'jsbi';
@@ -8,9 +11,7 @@ import _ from 'lodash';
 
 import { IV2PoolProvider } from '../providers';
 import { IPortionProvider } from '../providers/portion-provider';
-import {
-  ArbitrumGasData
-} from '../providers/v3/gas-data-provider';
+import { ArbitrumGasData } from '../providers/v3/gas-data-provider';
 import { IV3PoolProvider } from '../providers/v3/pool-provider';
 import {
   GasModelProviderConfig,
@@ -28,11 +29,8 @@ import {
 } from '../routers';
 import { CurrencyAmount, log, WRAPPED_NATIVE_CURRENCY } from '../util';
 
-import { Pair } from '@uniswap/v2-sdk';
 import { opStackChains } from './l2FeeChains';
 import { buildSwapMethodParameters, buildTrade } from './methodParameters';
-import { estimateL1Gas, estimateL1GasCost } from '@eth-optimism/sdk';
-import { BaseProvider, TransactionRequest } from '@ethersproject/providers';
 
 export async function getV2NativePool(
   token: Token,
@@ -56,7 +54,7 @@ export async function getV2NativePool(
         reserve0: pool?.reserve0.toExact(),
         reserve1: pool?.reserve1.toExact(),
       },
-      `Could not find a valid WETH V2 pool with ${token.symbol} for computing gas costs.`
+      `Could not find a valid WETH V2 pool with ${token.symbol} for computing gas costs.3`
     );
 
     return null;
@@ -100,7 +98,7 @@ export async function getHighestLiquidityV3NativePool(
   if (pools.length == 0) {
     log.error(
       { pools },
-      `Could not find a ${nativeCurrency.symbol} pool with ${token.symbol} for computing gas costs.`
+      `Could not find a ${nativeCurrency.symbol} pool with ${token.symbol} for computing gas costs.4`
     );
 
     return null;
@@ -143,7 +141,6 @@ export async function getHighestLiquidityV3USDPool(
     .value();
 
   const poolAccessor = await poolProvider.getPools(usdPools, providerConfig);
-
   const pools = _([
     FeeAmount.HIGH,
     FeeAmount.MEDIUM,
@@ -152,7 +149,6 @@ export async function getHighestLiquidityV3USDPool(
   ])
     .flatMap((feeAmount) => {
       const pools = [];
-
       for (const usdToken of usdTokens) {
         const pool = poolAccessor.getPool(wrappedCurrency, usdToken, feeAmount);
         if (pool) {
@@ -166,7 +162,7 @@ export async function getHighestLiquidityV3USDPool(
     .value();
 
   if (pools.length == 0) {
-    const message = `Could not find a USD/${wrappedCurrency.symbol} pool for computing gas costs.`;
+    const message = `Could not find a USD/${wrappedCurrency.symbol} pool for computing gas costs.5`;
     log.error({ pools }, message);
     throw new Error(message);
   }
@@ -230,16 +226,16 @@ export async function calculateOptimismToL1FeeFromCalldata(
   const tx: TransactionRequest = {
     data: calldata,
     chainId: chainId,
-    type: 2 // sign the transaction as EIP-1559, otherwise it will fail at maxFeePerGas
-  }
-  const [l1GasUsed, l1GasCost] = await Promise.all([estimateL1Gas(provider, tx), estimateL1GasCost(provider, tx)]);
+    type: 2, // sign the transaction as EIP-1559, otherwise it will fail at maxFeePerGas
+  };
+  const [l1GasUsed, l1GasCost] = await Promise.all([
+    estimateL1Gas(provider, tx),
+    estimateL1GasCost(provider, tx),
+  ]);
   return [l1GasUsed, l1GasCost];
 }
 
-export function getL2ToL1GasUsed(
-  data: string,
-  chainId: ChainId
-): BigNumber {
+export function getL2ToL1GasUsed(data: string, chainId: ChainId): BigNumber {
   switch (chainId) {
     case ChainId.ARBITRUM_ONE:
     case ChainId.ARBITRUM_GOERLI: {
@@ -264,7 +260,7 @@ export async function calculateGasUsed(
   estimatedGasUsedUSD: CurrencyAmount;
   estimatedGasUsedQuoteToken: CurrencyAmount;
   estimatedGasUsedGasToken?: CurrencyAmount;
-  quoteGasAdjusted: CurrencyAmount
+  quoteGasAdjusted: CurrencyAmount;
 }> {
   const quoteToken = route.quote.currency.wrapped;
   const gasPriceWei = route.gasPriceWei;
@@ -273,11 +269,13 @@ export async function calculateGasUsed(
   // Arbitrum charges L2 gas for L1 calldata posting costs.
   // See https://github.com/Uniswap/smart-order-router/pull/464/files#r1441376802
   if (opStackChains.includes(chainId)) {
-    l2toL1FeeInWei = (await calculateOptimismToL1FeeFromCalldata(
-      route.methodParameters!.calldata,
-      chainId,
-      provider
-    ))[1];
+    l2toL1FeeInWei = (
+      await calculateOptimismToL1FeeFromCalldata(
+        route.methodParameters!.calldata,
+        chainId,
+        provider
+      )
+    )[1];
   }
 
   // add l2 to l1 fee and wrap fee to native currency
@@ -541,7 +539,12 @@ export const calculateL1GasFeesHelper = async (
   let mainnetFeeInWei = BigNumber.from(0);
   let gasUsedL1OnL2 = BigNumber.from(0);
   if (opStackChains.includes(chainId)) {
-    [mainnetGasUsed, mainnetFeeInWei] = await calculateOptimismToL1SecurityFee(route, swapOptions, chainId, provider);
+    [mainnetGasUsed, mainnetFeeInWei] = await calculateOptimismToL1SecurityFee(
+      route,
+      swapOptions,
+      chainId,
+      provider
+    );
   } else if (
     chainId == ChainId.ARBITRUM_ONE ||
     chainId == ChainId.ARBITRUM_GOERLI
@@ -622,7 +625,11 @@ export const calculateL1GasFeesHelper = async (
       ChainId.OPTIMISM
     ).calldata;
 
-    const [l1GasUsed, l1GasCost] = await calculateOptimismToL1FeeFromCalldata(data, chainId, provider);
+    const [l1GasUsed, l1GasCost] = await calculateOptimismToL1FeeFromCalldata(
+      data,
+      chainId,
+      provider
+    );
     return [l1GasUsed, l1GasCost];
   }
 
