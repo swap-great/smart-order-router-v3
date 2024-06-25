@@ -38,7 +38,7 @@ export const V2_SUPPORTED = [
   ChainId.BNB,
   ChainId.AVALANCHE,
   //
-  ChainId.BASE_SEPOLIA,
+  // ChainId.BASE_SEPOLIA,
 ];
 
 export const HAS_L1_FEE = [

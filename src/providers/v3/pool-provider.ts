@@ -199,6 +199,15 @@ export class V3PoolProvider implements IV3PoolProvider {
         feeAmount: FeeAmount
       ): Pool | undefined => {
         const { poolAddress } = this.getPoolAddress(tokenA, tokenB, feeAmount);
+        log.warn(' poolAddressToPool ', poolAddressToPool);
+        log.warn(
+          ' poolAddress ',
+          poolAddress,
+          ' tokenA: ',
+          tokenA.symbol,
+          ' tokenB: ',
+          tokenB.symbol
+        );
         return poolAddressToPool[poolAddress];
       },
       getPoolByAddress: (address: string): Pool | undefined =>
@@ -238,7 +247,8 @@ export class V3PoolProvider implements IV3PoolProvider {
     //   V3_CORE_FACTORY_ADDRESSES[this.chainId],
     //   'params v3'
     // );
-    console.log(poolAddress, 'poolAddress v3');
+    // console.log(poolAddress, 'poolAddress');
+    log.info(' V3_CORE_FACTORY_ADDRESSES ', poolAddress);
 
     this.POOL_ADDRESS_CACHE[cacheKey] = poolAddress;
 
