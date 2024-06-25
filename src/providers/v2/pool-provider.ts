@@ -259,6 +259,7 @@ export class V2PoolProvider implements IV2PoolProvider {
     }
 
     const poolAddress = Pair.getAddress(token0, token1);
+    console.log(poolAddress, 'pool address v2');
 
     this.POOL_ADDRESS_CACHE[cacheKey] = poolAddress;
 

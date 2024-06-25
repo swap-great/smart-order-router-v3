@@ -1,6 +1,6 @@
+import { BaseProvider } from '@ethersproject/providers';
 import { V3RouteWithValidQuote } from '../../entities/route-with-valid-quote';
 import { BuildOnChainGasModelFactoryType, IGasModel, IOnChainGasModelFactory } from '../gas-model';
-import { BaseProvider } from '@ethersproject/providers';
 /**
  * Computes a gas estimate for a V3 swap using heuristics.
  * Considers number of hops in the route, number of ticks crossed
