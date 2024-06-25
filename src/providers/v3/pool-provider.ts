@@ -231,6 +231,15 @@ export class V3PoolProvider implements IV3PoolProvider {
       fee: feeAmount,
     });
 
+    // console.log(
+    //   feeAmount,
+    //   tokenA,
+    //   tokenB,
+    //   V3_CORE_FACTORY_ADDRESSES[this.chainId],
+    //   'params'
+    // );
+    // console.log(poolAddress, 'poolAddress');
+
     this.POOL_ADDRESS_CACHE[cacheKey] = poolAddress;
 
     return { poolAddress, token0, token1 };
