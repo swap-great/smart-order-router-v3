@@ -103,6 +103,8 @@ export class V2PoolProvider implements IV2PoolProvider {
         tokenB
       );
 
+      log.warn(' poolAddress pool provider v2', poolAddress);
+
       if (poolAddressSet.has(poolAddress)) {
         continue;
       }
@@ -111,7 +113,6 @@ export class V2PoolProvider implements IV2PoolProvider {
       sortedTokenPairs.push([token0, token1]);
       sortedPoolAddresses.push(poolAddress);
     }
-
     log.debug(
       `getPools called with ${tokenPairs.length} token pairs. Deduped down to ${poolAddressSet.size}`
     );

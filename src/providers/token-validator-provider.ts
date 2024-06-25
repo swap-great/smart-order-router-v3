@@ -117,6 +117,8 @@ export class TokenValidatorProvider implements ITokenValidatorProvider {
       .map((address) => [address, this.BASES, this.amountToFlashBorrow])
       .value() as [string, string[], string][];
 
+    log.info(' Validate FunctionParams ', functionParams);
+
     // We use the validate function instead of batchValidate to avoid poison pill problem.
     // One token that consumes too much gas could cause the entire batch to fail.
     const multicallResult =

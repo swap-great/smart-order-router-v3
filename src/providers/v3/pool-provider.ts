@@ -107,6 +107,15 @@ export class V3PoolProvider implements IV3PoolProvider {
         feeAmount
       );
 
+      log.warn(
+        ' poolAddress pool provider v3',
+        poolAddress,
+        ' token0: ',
+        token0.symbol,
+        ' token1: ',
+        token1.symbol
+      );
+
       if (poolAddressSet.has(poolAddress)) {
         continue;
       }
