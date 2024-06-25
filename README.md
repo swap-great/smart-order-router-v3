@@ -162,7 +162,6 @@ Total ticks crossed: 7
 ./bin/cli quote --tokenIn 0x7F5c764cBc14f9669B88837ca1490cCa17c31607 --tokenOut 0x4200000000000000000000000000000000000042 --amount 1 --exactIn --minSplits 1 --protocols v2 --router alpha --chainId 10
 ```
 
-
 ## Optimism-Goerli
 
 ```
@@ -229,6 +228,9 @@ Total ticks crossed: 7
 ./bin/cli quote --tokenIn 0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA --tokenOut 0x4200000000000000000000000000000000000006 --amount 10 --exactIn --minSplits 1 --protocols v3 --router alpha --chainId 8453
 ```
 
+<!-- 0x8bf3B9eD4515fB3373226C08d903A1A95B334a15 -->
+
+./bin/cli quote --tokenIn 0x6267947C818ff3900F620FC97d590702afB69147 --tokenOut 0x8bf3B9eD4515fB3373226C08d903A1A95B334a15 --amount 10 --exactIn --minSplits 1 --protocols v2,v3 --chainId 84532 --debug
 
 ## Adding a new Chain
 

@@ -141,6 +141,7 @@ export async function getHighestLiquidityV3USDPool(
     .value();
 
   const poolAccessor = await poolProvider.getPools(usdPools, providerConfig);
+  log.warn(' chainId, usdPools ', chainId, usdPools);
   const pools = _([
     FeeAmount.HIGH,
     FeeAmount.MEDIUM,
@@ -149,8 +150,10 @@ export async function getHighestLiquidityV3USDPool(
   ])
     .flatMap((feeAmount) => {
       const pools = [];
+      log.warn(' getHighestLiquidityV3USDPool fun usdTokens, ', usdTokens);
       for (const usdToken of usdTokens) {
         const pool = poolAccessor.getPool(wrappedCurrency, usdToken, feeAmount);
+        log.warn(' pool ', pool);
         if (pool) {
           pools.push(pool);
         }
