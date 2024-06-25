@@ -103,7 +103,7 @@ export class V2PoolProvider implements IV2PoolProvider {
         tokenB
       );
 
-      log.warn(' poolAddress pool provider v2', poolAddress);
+      log.info(' poolAddress pool provider v2', poolAddress);
 
       if (poolAddressSet.has(poolAddress)) {
         continue;

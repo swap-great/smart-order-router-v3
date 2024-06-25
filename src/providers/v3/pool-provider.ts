@@ -107,7 +107,7 @@ export class V3PoolProvider implements IV3PoolProvider {
         feeAmount
       );
 
-      log.warn(
+      log.info(
         ' poolAddress pool provider v3',
         poolAddress,
         ' token0: ',
@@ -208,8 +208,8 @@ export class V3PoolProvider implements IV3PoolProvider {
         feeAmount: FeeAmount
       ): Pool | undefined => {
         const { poolAddress } = this.getPoolAddress(tokenA, tokenB, feeAmount);
-        log.warn(' poolAddressToPool ', poolAddressToPool);
-        log.warn(
+        log.info(' poolAddressToPool ', poolAddressToPool);
+        log.info(
           ' poolAddress ',
           poolAddress,
           ' tokenA: ',
