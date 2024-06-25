@@ -171,6 +171,7 @@ export async function getBestSwapRouteBy(
       });
     }
   );
+  log.info(percentToSortedQuotes, 'best quote with sort');
 
   const quoteCompFn =
     routeType == TradeType.EXACT_INPUT

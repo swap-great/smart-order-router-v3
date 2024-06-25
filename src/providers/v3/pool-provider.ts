@@ -254,7 +254,7 @@ export class V3PoolProvider implements IV3PoolProvider {
     //   tokenA,
     //   tokenB,
     //   V3_CORE_FACTORY_ADDRESSES[this.chainId],
-    //   'params'
+    //   'params v3'
     // );
     // console.log(poolAddress, 'poolAddress');
     log.info(' V3_CORE_FACTORY_ADDRESSES ', poolAddress);
