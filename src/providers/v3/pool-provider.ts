@@ -125,7 +125,7 @@ export class V3PoolProvider implements IV3PoolProvider {
       sortedPoolAddresses.push(poolAddress);
     }
 
-    log.debug(
+    log.info(
       `getPools called with ${tokenPairs.length} token pairs. Deduped down to ${poolAddressSet.size}`
     );
 
@@ -183,7 +183,7 @@ export class V3PoolProvider implements IV3PoolProvider {
 
       poolAddressToPool[poolAddress] = pool;
     }
-
+    log.info(' pool-provider invalidPools ', invalidPools);
     if (invalidPools.length > 0) {
       log.info(
         {
@@ -193,11 +193,13 @@ export class V3PoolProvider implements IV3PoolProvider {
               `${token0.symbol}/${token1.symbol}/${fee / 10000}%`
           ),
         },
-        `${invalidPools.length} pools invalid after checking their slot0 and liquidity results. Dropping.`
+        ` ${invalidPools.length} pools invalid after checking their slot0 and liquidity results. Dropping.`
       );
     }
 
     const poolStrs = _.map(Object.values(poolAddressToPool), poolToString);
+
+    log.info(' pool-provider poolAddressToPool ', poolAddressToPool);
 
     log.debug({ poolStrs }, `Found ${poolStrs.length} valid pools`);
 
@@ -207,6 +209,7 @@ export class V3PoolProvider implements IV3PoolProvider {
         tokenB: Token,
         feeAmount: FeeAmount
       ): Pool | undefined => {
+        log.info(' getPoolAddress in ');
         const { poolAddress } = this.getPoolAddress(tokenA, tokenB, feeAmount);
         log.info(' poolAddressToPool ', poolAddressToPool);
         log.info(

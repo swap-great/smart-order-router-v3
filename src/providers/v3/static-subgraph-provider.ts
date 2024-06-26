@@ -195,7 +195,7 @@ export class StaticV3SubgraphProvider implements IV3SubgraphProvider {
     tokenOut?: Token,
     providerConfig?: ProviderConfig
   ): Promise<V3SubgraphPool[]> {
-    log.info('In static subgraph provider for V3');
+    log.info(' In static subgraph provider for V3');
     const bases = BASES_TO_CHECK_TRADES_AGAINST[this.chainId];
 
     const basePairs: [Token, Token][] = _.flatMap(
@@ -230,7 +230,7 @@ export class StaticV3SubgraphProvider implements IV3SubgraphProvider {
       .value();
 
     log.info(
-      `V3 Static subgraph provider about to get ${pairs.length} pools on-chain`
+      ` V3 Static subgraph provider about to get ${pairs.length} pools on-chain`
     );
     const poolAccessor = await this.poolProvider.getPools(
       pairs,

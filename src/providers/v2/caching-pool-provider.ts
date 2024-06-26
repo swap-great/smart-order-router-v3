@@ -112,6 +112,7 @@ export class CachingV2PoolProvider implements IV2PoolProvider {
         }
       }
     }
+    log.info(' poolAddressToPool ', poolAddressToPool);
 
     return {
       getPool: (tokenA: Token, tokenB: Token): Pair | undefined => {
