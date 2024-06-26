@@ -88,7 +88,7 @@ async function getHighestLiquidityV3USDPool(chainId, poolProvider, providerConfi
     })
         .value();
     const poolAccessor = await poolProvider.getPools(usdPools, providerConfig);
-    util_1.log.warn(' chainId, usdPools ', chainId, usdPools);
+    util_1.log.info(' chainId, usdPools ', chainId, usdPools);
     const pools = (0, lodash_1.default)([
         v3_sdk_1.FeeAmount.HIGH,
         v3_sdk_1.FeeAmount.MEDIUM,
@@ -97,10 +97,10 @@ async function getHighestLiquidityV3USDPool(chainId, poolProvider, providerConfi
     ])
         .flatMap((feeAmount) => {
         const pools = [];
-        util_1.log.warn(' getHighestLiquidityV3USDPool fun usdTokens, ', usdTokens);
+        util_1.log.info(' getHighestLiquidityV3USDPool fun usdTokens, ', usdTokens);
         for (const usdToken of usdTokens) {
             const pool = poolAccessor.getPool(wrappedCurrency, usdToken, feeAmount);
-            util_1.log.warn(' pool ', pool);
+            util_1.log.info(' pool ', pool);
             if (pool) {
                 pools.push(pool);
             }

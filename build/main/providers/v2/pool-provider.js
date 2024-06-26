@@ -42,7 +42,7 @@ class V2PoolProvider {
         for (const tokenPair of tokenPairs) {
             const [tokenA, tokenB] = tokenPair;
             const { poolAddress, token0, token1 } = this.getPoolAddress(tokenA, tokenB);
-            log_1.log.warn(' poolAddress pool provider v2', poolAddress);
+            log_1.log.info(' poolAddress pool provider v2', poolAddress);
             if (poolAddressSet.has(poolAddress)) {
                 continue;
             }
