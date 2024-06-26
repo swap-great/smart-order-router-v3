@@ -190,7 +190,7 @@ const baseTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.BLAST]: [WRAPPED_NATIVE_CURRENCY[ChainId.BLAST]!, USDB_BLAST],
   // change
   [ChainId.BASE_SEPOLIA]: [
-    WRAPPED_NATIVE_CURRENCY[ChainId.BASE_SEPOLIA],
+    WRAPPED_NATIVE_CURRENCY[ChainId.BASE_SEPOLIA]!,
     USDC_BASE_SEPOLIA,
   ],
 };

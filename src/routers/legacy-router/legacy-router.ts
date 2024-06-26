@@ -102,12 +102,14 @@ export class LegacyRouter {
     const tokenIn = currencyIn.wrapped;
     const tokenOut = currencyOut.wrapped;
     const routes = await this.getAllRoutes(tokenIn, tokenOut, routingConfig);
+    log.info(routes, 'legacy routes getAllRoutes');
     const routeQuote = await this.findBestRouteExactIn(
       amountIn,
       tokenOut,
       routes,
       routingConfig
     );
+    log.info(routeQuote, 'legacy routeQuote findBestRouteExactIn');
 
     if (!routeQuote) {
       return null;
@@ -230,6 +232,7 @@ export class LegacyRouter {
       tokenOut,
       TradeType.EXACT_INPUT
     );
+    log.info(bestQuote, 'legacy router best quote');
 
     return bestQuote;
   }
