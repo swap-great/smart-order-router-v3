@@ -162,9 +162,17 @@ export class V3Quoter extends BaseQuoter<V3CandidatePools, V3Route> {
       `Getting quotes for V3 for ${routes.length} routes with ${amounts.length} amounts per route.`
     );
 
-    const { routesWithQuotes } = await quoteFn<V3Route>(amounts, routes, {
+    const res = await quoteFn<V3Route>(amounts, routes, {
       blockNumber: routingConfig.blockNumber,
     });
+    const { routesWithQuotes } = res;
+    log.info(res, 'routesWithQuotes res v3===');
+    log.info(routesWithQuotes, 'routesWithQuotes v3===');
+    log.info(
+      routingConfig.blockNumber,
+      'routingConfig.blockNumber v3===routingConfig.blockNumber'
+    );
+    log.info(JSON.stringify(routes), 'params routes v3===');
 
     metric.putMetric(
       'V3QuotesLoad',
@@ -182,6 +190,7 @@ export class V3Quoter extends BaseQuoter<V3CandidatePools, V3Route> {
 
     const routesWithValidQuotes = [];
 
+    log.info(JSON.stringify(routesWithQuotes), 'routesWithQuotes v3===');
     for (const routeWithQuote of routesWithQuotes) {
       const [route, quotes] = routeWithQuote;
 
@@ -195,6 +204,17 @@ export class V3Quoter extends BaseQuoter<V3CandidatePools, V3Route> {
           initializedTicksCrossedList,
           gasEstimate,
         } = amountQuote;
+        log.info(quotes.length, 'quotes length v3===');
+        log.info(JSON.stringify(quotes), 'quotes json v3===');
+        log.info(
+          JSON.stringify(sqrtPriceX96AfterList),
+          'sqrtPriceX96AfterList json v3==='
+        );
+        log.info(
+          JSON.stringify(initializedTicksCrossedList),
+          'initializedTicksCrossedList json v3==='
+        );
+        log.info(gasEstimate, 'gasEstimate json v3===');
 
         if (
           !quote ||
