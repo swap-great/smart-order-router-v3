@@ -1,13 +1,13 @@
 import { BigNumber } from '@ethersproject/bignumber';
 import { ChainId, Token, TradeType } from '@uniswap/sdk-core';
 import { ITokenListProvider, ITokenProvider, ITokenValidatorProvider, IV2PoolProvider, IV2QuoteProvider, IV2SubgraphProvider } from '../../../providers';
+import { ArbitrumGasData, IL2GasDataProvider } from '../../../providers/v3/gas-data-provider';
 import { CurrencyAmount } from '../../../util';
 import { V2Route } from '../../router';
 import { AlphaRouterConfig } from '../alpha-router';
 import { V2RouteWithValidQuote } from '../entities';
 import { CandidatePoolsBySelectionCriteria, V2CandidatePools } from '../functions/get-candidate-pools';
 import { IGasModel, IV2GasModelFactory } from '../gas-models';
-import { ArbitrumGasData, IL2GasDataProvider } from '../../../providers/v3/gas-data-provider';
 import { BaseQuoter } from './base-quoter';
 import { GetQuotesResult } from './model/results/get-quotes-result';
 import { GetRoutesResult } from './model/results/get-routes-result';
